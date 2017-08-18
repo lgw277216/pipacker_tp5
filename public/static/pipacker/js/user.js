@@ -55,7 +55,11 @@ $(function (){
 			$user_pwd.on('blur',function() {
 				$user_pwd_text = $user_pwd.val();
 				if($user_pwd != "") {
+<<<<<<< HEAD
 					 if(/^(\w){8,20}$/.test($user_pwd_text)) {
+=======
+					 if(/^(\w){6,20}$/.test($user_pwd_text)) {
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						$(".lotips").eq(1).removeClass("glyphicon-remove-circle").addClass("glyphicon-ok-circle");
 
 					} else {
@@ -75,6 +79,7 @@ $(function (){
 							"user_phone":$user_phone_text,
 							"user_pwd":$user_pwd_text
 						}
+<<<<<<< HEAD
 						var that = this;
 						$.get(register_url,userData,function(Data) {
 							if (!$.isEmptyObject(Data)) {
@@ -90,6 +95,28 @@ $(function (){
 									// $(".before_login").html('<span class="glyphicon glyphicon-globe"></span> <span class="glyphicon glyphicon-envelope"></span> <span class="glyphicon glyphicon-user personal_list"></span> <span class="glyphicon glyphicon-off pp_logout_btn"></span>');
 									console.log(localStorage);
 									window.location.reload();
+=======
+						$.get(register_url,userData,function(Data) {
+							if (!$.isEmptyObject(Data)) {
+								var redata = $.parseJSON(Data);
+								console.log(redata);
+								if (0 == redata.status) {
+<<<<<<< HEAD
+									localStorage.setItem("user_phone",redata.rearray[0].user_phone);
+									// localStorage.setItem("user_pwd",redata[0].user_pwd);
+									localStorage.setItem("user_name",redata.rearray[0].user_name);
+									localStorage.setItem("user_id",redata.rearray[0].user_id);
+=======
+									localStorage.setItem("user_phone",redata.rearray.user_phone);
+									// localStorage.setItem("user_pwd",redata[0].user_pwd);
+									localStorage.setItem("user_name",redata.rearray.user_name);
+									localStorage.setItem("user_id",redata.rearray.user_id);
+>>>>>>> d0907dfb0679258f58f914a9e11d3c0bec0da60c
+									$("#pp_login").modal('hide');
+									$(".modal-backdrop").hide();
+									// alert('登录成功');
+									console.log(localStorage);
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 								} else if (1 == redata.status) {
 									alert("密码有误");
 								}
@@ -206,6 +233,7 @@ $(function (){
 			});
 		},
 		logout:function(){
+<<<<<<< HEAD
 			$(".pp_logout_btn").on('click',function() {
 				var user_id = localStorage.getItem("user_id");
 				$.get(register_url,{'user_id':user_id},function(Data) {
@@ -236,13 +264,21 @@ $(function (){
 					$(".per_list_show").stop().fadeOut(200);
 				});
 			})
+=======
+
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 		},
 		init:function(){
 			this.register();
 			this.login();
+<<<<<<< HEAD
 			this.logout();
 			this.show_person_list();
 		}
+=======
+		}
+
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	}
 	var user_option = new user_option();
 	user_option.init();

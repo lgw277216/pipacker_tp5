@@ -31,9 +31,16 @@
 		.logo a:hover{
 			text-decoration:none; 
 		}
+<<<<<<< HEAD
 		.logo h2{
 			margin: 0;
 			color: #aaa;
+=======
+		.logo img{
+			height: 55px;
+		    display: block;
+		    margin: -10px auto
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 		}
 		.search_input{	
 		    font-size: 13px;
@@ -93,34 +100,51 @@
 			height:100%;
 			display: inline-block;
 			position: relative;
+<<<<<<< HEAD
 			background: #000;
 			text-align: center;
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 		}		
 	    .hf_btn{
 			position: absolute;
 			top:-50%;
+<<<<<<< HEAD
 			margin-top:55%;
+=======
+			margin-top:50%;
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 			font-size: 30px;
 			font-size: 100;
 			cursor: pointer;
 			color:#fff;
 	    }
+<<<<<<< HEAD
 	    .pre_btn {
 	    	left: 0;
 	    }
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	    .next_btn{
 	    	right: 0;
 	    }
 		.browse_big_img img {
+<<<<<<< HEAD
 			/*width:100%;*/
+=======
+			width:100%;
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 			height:100%;
 		}
 		.menu_right{
 			display: inline-block;
 			width:19%;
+<<<<<<< HEAD
 		    position: relative;
     		top: -40px;
     		left: 23px;
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 		}
 		.modal-dialog .cancel{
 			text-align: center;
@@ -143,25 +167,35 @@
 	    .swiper-slide {
 	        background-size: cover;
 	        background-position: center;
+<<<<<<< HEAD
 	        /*width: 100%;*/
 	    	height: 100%;
 	    }
 	    .show_content_small_img {
 	    	/*width: 100%;*/
 	    	/*height: 100%;*/
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	    }
 	    .gallery-top {
 	        height: 100%;
 	        width: 100%;
 	    }
 	</style>
+<<<<<<< HEAD
 	<script src="__PUBLIC_PIPACKER__/pipacker/js/user.js"></script>
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 </head>
 <body>
 	<!-- prints头部 -->
 	<header class="header">
 		<div class="row">
+<<<<<<< HEAD
 			<div class="col-md-3 logo"><a href="__PUBLIC__/mainpage"><h2 style="margin-left: 43px;" title="返回首页">pipacker</h2></a></div>
+=======
+			<div class="col-md-3 logo"><a href="__PUBLIC__/mainpage"><img src="__PUBLIC_PIPACKER__/pipacker/images/pipacker_logo.jpg" alt=""></a></div>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 			<div class="col-md-6 search"><input type="text" class="search_input" placeholder="搜索"></div>
 			<div class="col-md-2 support"><span class="glyphicon glyphicon-envelope"></span> 24h support</div>
 			<div class="col-md-1 lightbox"><span class="glyphicon glyphicon-list-alt">Lightbox</span></div>
@@ -174,7 +208,11 @@
 			<ul>
 				{foreach $pp_list as $key=>$item}
 				<li class="show_content_img">
+<<<<<<< HEAD
 					<a href="#browse_modal" data-toggle="modal"><img src="__PUBLIC_PIPACKER__/{$item['works_src']}" data-pid="{$item['works_id']}" data-id="{$key}" alt="" class="show_content_small_img"></a>
+=======
+					<a href="#browse_modal" data-toggle="modal"><img src="{$item['works_src']}" data-pid="{$item['works_id']}" data-id="{$key}" alt="" class="show_content_small_img"></a>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 				</li>
 				{/foreach}
 			</ul>
@@ -190,6 +228,7 @@
 						<div class="menu_right">
 							<h4 class="pic_title">一个很有感觉的时间</h4>
 							<p>&copy;作者</p>
+<<<<<<< HEAD
 							<p>图片ID：2</p>
 							<p>价格：<strong>9.99-29.99</strong>元</p>
 							<div class="tags">
@@ -197,6 +236,13 @@
 							</div>
 							<div class="btn btn-success">购买</div>
 							<div class="btn btn-default">取消</div>
+=======
+							<div class="tags">
+								<!-- {foreach $tags as $item}
+									<span>#{$item}</span>
+								{/foreach} -->
+							</div>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						</div>
 					</div>
 					<div class="cancel" data-dismiss="modal">X</div>
@@ -219,8 +265,13 @@
 						console.log(pic_id);
 						$browse_img.find('img').attr('src',$val);
 						var  str = '';
+<<<<<<< HEAD
 						for(var i=0;i<data[index].works_tags.length;i++){
 							str += "<span> #"+data[index].works_tags[i]+"</span>";
+=======
+						for(var i=0;i<data[index].works_type.length;i++){
+							str += "<span> #"+data[index].works_type[i]+"</span>";
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						}
 						$(".tags").html($(str));
 						$(".pic_title").text(data[index].works_title);
@@ -229,7 +280,10 @@
 				$browse_img.on('click',function(e){
 					var this_elm = $(e.target);
 					if(this_elm.hasClass('pre_btn')){
+<<<<<<< HEAD
 						next_lock = true;
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						if(pre_lock){
 							browse_img(1);
 						}else{
@@ -237,7 +291,10 @@
 						}
 						// $browse_img.find('img').attr('src','__PUBLIC_PIPACKER__/pipacker/images/bg.jpg');
 					}else if(this_elm.hasClass('next_btn')){
+<<<<<<< HEAD
 						pre_lock = true;
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						if(next_lock){
 							browse_img(0);
 						}else{
@@ -252,9 +309,15 @@
 			 //        observer:true,//修改swiper自己或子元素时，自动初始化swiper
     		 //	observeParents:true//修改swiper的父元素时，自动初始化swiper
 			 //    });
+<<<<<<< HEAD
 			 	function browse_img(ew){
 			 		$.ajax({
 							url: '/pipacker/public/pipacker/Prints/browse',
+=======
+			 function browse_img(ew){
+			 	$.ajax({
+							url: '/public/pipacker/Prints/browse',
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 							type: 'post',
 							data: {'id':pic_id,'ew':ew},
 						})
@@ -263,11 +326,19 @@
 								var redata = $.parseJSON(data);
 								if(1==redata.has){
 									var pic_url = redata.works_src;
+<<<<<<< HEAD
 									$browse_img.find('img').attr('src',"/pipacker/public/static/"+pic_url);
 									// console.log(pic_url);
 									var str ="";
 									for(var i=0;i<redata.works_tags.length;i++){
 										str += "<span> #"+redata.works_tags[i]+"</span>";
+=======
+									$browse_img.find('img').attr('src',"/"+pic_url);
+									// console.log(pic_url);
+									var str ="";
+									for(var i=0;i<redata.works_type.length;i++){
+										str += "<span> #"+redata.works_type[i]+"</span>";
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 									}
 									$(".tags").html($(str));
 									$(".pic_title").text(redata.works_title);
@@ -287,7 +358,11 @@
 								alert("页面走丢了");
 							}
 						});
+<<<<<<< HEAD
 			 	}
+=======
+			 }
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 			});
 		</script>
 </body>

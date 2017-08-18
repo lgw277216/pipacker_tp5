@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
     <link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/bootstrap.min.css">
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/swiper.min.css">
+=======
+	<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/swiper.min.css"> -->
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
   <link rel="stylesheet" href="__PUBLIC_PIPACKER__/pipacker/css/mainpage.css">
 	<style>
         html, body {
@@ -57,6 +61,10 @@
         }
         .browse_photo {
             width: 70%;
+<<<<<<< HEAD
+=======
+            max-height: 600px;
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
             float: left;
         }
         /*comment or detail*/
@@ -336,10 +344,42 @@
         .floor .like_btn:focus i {
             color: #000;
         }
+<<<<<<< HEAD
+=======
+        .browse_big_img{
+          clear: both;
+          width:100%;
+          height:400px;
+          margin-top: 120px;
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+        }
+        .browse_big_img img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          margin:auto;
+        }   
+          .hf_btn{
+          position: absolute;        
+          top:-50%;
+          margin-top:40%;
+          font-size: 30px;
+          font-size: 100;
+          z-index: 2;
+          cursor: pointer;
+          color:#fff;
+          }
+          .next_btn{
+            right: 0;
+          }
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
     </style>
 </head>
 <body>
 	{include file="common/navigation"}
+<<<<<<< HEAD
     <div class="swiper-container browse_photo">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -374,6 +414,14 @@
         <!-- Navigation -->
         <div class="swiper-button-next swiper-button-white"></div>
         <div class="swiper-button-prev swiper-button-white"></div>
+=======
+    <div class="browse_photo">
+            <div class="browse_big_img">
+                   <img src="__PUBLIC_PIPACKER__/pipacker/images/11.jpg" class="show_content_small_img">
+                   <span class="pre_btn hf_btn glyphicon glyphicon-chevron-left"></span>
+                   <span class="next_btn hf_btn glyphicon glyphicon-chevron-right"></span>
+            </div>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
     </div>
     <div class="comORdet">
       <h3 style="font-family: '宋体';">评论</h3>
@@ -431,7 +479,11 @@
     <div class="detail_com">
       <h3 style="font-family: '宋体';">照片信息</h3>
       <div class="thumbnails">
+<<<<<<< HEAD
         <img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" alt="">
+=======
+        
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
       </div>
       <div class="info">
           <!-- <p><span class="color888;">查看</span><br><span class="colorccc;">10086+</span></p>
@@ -468,7 +520,11 @@
                    <div class="author_content">
                       <div class="author_header">
                         <div class="author_header_inner">
+<<<<<<< HEAD
                           <a href="{:url('homepage/index')}" class="user_name" style="color: #fff; font-size: 21px;">RUA<img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" class="user_headphoto"></a>
+=======
+                          <a href="homepage" class="user_name" style="color: #fff; font-size: 21px;">RUA<img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" class="user_headphoto"></a>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
                           <span class="follow">关注</span>
                         </div>
                       </div>
@@ -523,6 +579,7 @@
 
 <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/jquery-1.11.1.min.js"></script>
 <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/swiper.min.js"></script>
 <script type="text/javascript">
 	// var swiper = new Swiper('.swiper-container', {
@@ -561,4 +618,89 @@
             }
         });
     });
+=======
+<!-- <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/swiper.min.js"></script> -->
+<script type="text/javascript">
+
+  $(function(){        
+        var works_id = localStorage.getItem("apic_id");
+        var $para = $(".colorccc");        
+        var $browse_img = $('.browse_big_img');
+        var $thumbnails = $('.thumbnails');
+        $.ajax({
+          url: "{:url('/qworks/Apic')}",
+          type: 'get',
+          data: {"works_id": works_id},
+        })
+        .done(function(data) {
+           if(!$.isEmptyObject(data)){
+              var redata = $.parseJSON(data);
+              $para.eq(0).text(redata.rearray.works_browse);
+              $browse_img.find("img").attr("src","/public/static/"+redata.rearray.works_src);
+              $thumbnails.text(redata.rearray.works_profile);
+              $para.eq(1).text(redata.rearray.works_type);
+              $para.eq(2).text(redata.rearray.works_para[0]);
+              $para.eq(3).text(redata.rearray.works_para[1]);
+              $para.eq(4).text(redata.rearray.works_para[2]);
+              $para.eq(5).text(redata.rearray.works_para[3]);
+           }
+        });
+        var pic_id = 0;
+        var pre_lock = true;
+        var next_lock = true;
+        $browse_img.on('click',function(e){
+          var this_elm = $(e.target);
+          if(this_elm.hasClass('pre_btn')){
+            if(pre_lock){
+              browse_img(1);
+            }else{
+              alert("已经是第一张了");
+            }
+            // $browse_img.find('img').attr('src','__PUBLIC_PIPACKER__/pipacker/images/bg.jpg');
+          }else if(this_elm.hasClass('next_btn')){
+            if(next_lock){
+              browse_img(0);
+            }else{
+              alert("已经是最后一张了");
+            } 
+          }
+        });
+       function browse_img(ew){
+        $.ajax({
+              url: '/public/pipacker/Prints/browse',
+              type: 'post',
+              data: {'id':pic_id,'ew':ew},
+            })
+            .done(function(data) {
+              if(!$.isEmptyObject(data)){
+                var redata = $.parseJSON(data);
+                if(1==redata.has){
+                  var pic_url = redata.content_pic;
+                  $browse_img.find('img').attr('src',"/public/static/"+pic_url);
+                  // console.log(pic_url);
+                  var str ="";
+                  for(var i=0;i<redata.content_type.length;i++){
+                    str += "<span> #"+redata.content_type[i]+"</span>";
+                  }
+                  $(".tags").html($(str));
+                  $(".pic_title").text(redata.content_title);
+                  pic_id = redata.content_id;
+                }else{
+                  if(1==ew){
+                    pre_lock = false;
+                    next_lock = true;
+                    alert("已经是第一张了");
+                  }else{
+                    pre_lock = true;
+                    next_lock = false;
+                    alert("已经是最后一张了");
+                  }
+                }
+              }else{
+                alert("页面走丢了");
+              }
+            });
+       }
+      });
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 </script>

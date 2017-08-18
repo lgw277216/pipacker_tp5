@@ -62,11 +62,18 @@ ul{
 	color:#aaa;
 	z-index: 2;
 }
+<<<<<<< HEAD
 .logo h2{
 	margin: 0;
 	font-weight:100;
 	text-align: center;
 	color:#aaa;
+=======
+.logo img{
+	height: 55px;
+    display: block;
+    margin: -10px auto
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 }
 .search_input{	
     font-size: 13px;
@@ -84,9 +91,12 @@ ul{
     width: 80%;
     box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
 }
+<<<<<<< HEAD
 .support {
 	position: relative;
 }
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 .support span{
 	margin:0 2px;
 	cursor: pointer;
@@ -139,6 +149,7 @@ span.glyphicon-remove-circle{
 span.glyphicon-ok-circle{
 	color:green;
 }
+<<<<<<< HEAD
 .per_list_show {
 	width: 150px;
 	font-size: 16px;
@@ -187,3 +198,6 @@ span.glyphicon-ok-circle{
 	padding: 10px;
 	padding: 5px 10px;
 }
+=======
+
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d

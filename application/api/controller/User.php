@@ -12,11 +12,14 @@ class User extends baseControll
     /**
      * 显示资源列表
      *
+     *登录
+     * 
      * @return \think\Response
      */
     public function index()
     {
         session_start();
+<<<<<<< HEAD
         if (isset($_SESSION["user_info"])) {
             unset($_SESSION["user_info"]);
             $this->reJson("3");
@@ -26,11 +29,28 @@ class User extends baseControll
                if(isset($param["user_pwd"])){
                  $param["user_pwd"]=MD5($param["user_pwd"]);
                }
+=======
+        if(!empty($_SESSION["user_info"])){
+            unset($_SESSION["user_info"]);
+            $this->reJson("3");
+        }else{
+            $param = Request::instance()->param();
+            if(!empty($param)){
+
+               if(isset($param["user_pwd"])){
+                 $param["user_pwd"]=MD5($param["user_pwd"]);
+               }
+
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
                $user = Db::table("pp_user")->where($param)->find();
               
                if(!empty($user)){
                     unset($user["user_pwd"]);
+<<<<<<< HEAD
                     $_SESSION['user_info'] = $user;
+=======
+                    $_SESSION["user_info"] = $user;
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
                     $this->reJson("0",$user);
                }else{
                 $this->reJson("1");
@@ -38,7 +58,11 @@ class User extends baseControll
             }else{
                 $this->reJson("2",array(),"数据丢失了...");
             }
+<<<<<<< HEAD
         }
+=======
+        }        
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
     }
 
     /**
