@@ -21,6 +21,16 @@
 		    margin-top: 115px;
 		    overflow: hidden;
 	        background-image: url(__PUBLIC_PIPACKER__/pipacker/images/11.jpg);
+	        position: relative;
+	        z-index: 2;
+		}
+		.head_bg .edit_head_bg {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			color: #ddd;
+			z-index: 3;
+			display: none;
 		}
 		.container.head_info {
 			position: relative;
@@ -33,11 +43,21 @@
 			display: inline-block;
 			margin: 20px;
 			margin-left: 40px;
+			position: relative;
+			z-index: 2;
 		}
 		.head_info .head_photo img {
 			width: 100%;
 			height: 100%;
 			vertical-align: middle;
+		}
+		.head_photo .edit_headphoto {
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+			color: #ddd;
+			z-index: 3;
+			display: none;
 		}
 		.head_info .user_name {
 			color: #fff;
@@ -66,7 +86,7 @@
 			background: #fff;
     		color: #000;
 		}
-		.head_info .follow , .save_intro{
+		.head_info .follow , .save_intro, .edit_head_bg, .edit_headphoto{
 			display: inline-block;
             float: right;
             border: none;
@@ -289,20 +309,51 @@
           border-radius: 5px;
           height: 40px;
         }
+        .modal-content {
+        	background-color: #111;
+		    background-image: -webkit-gradient(linear,left top,left bottom,from(#111),to(#050505));
+		    background-image: -webkit-linear-gradient(top,#111,#050505);
+		    background-image: -moz-linear-gradient(top,#111,#050505);
+		    background-image: -o-linear-gradient(top,#111,#050505);
+		    background-image: -ms-linear-gradient(top,#111,#050505);
+		    background-image: linear-gradient(top,#111,#050505);
+        }
+        input[type=file] {
+		    display: inline-block;
+		}
+		.grey {
+			border: 1px solid #222;
+		    background-color: #333;
+		    background-image: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222));
+		    background-image: -webkit-linear-gradient(top, #333, #222);
+		    background-image: -moz-linear-gradient(top, #333, #222);
+		    background-image: -o-linear-gradient(top, #333, #222);
+		    background-image: -ms-linear-gradient(top, #333, #222);
+		    background-image: linear-gradient(top, #333, #222);
+		    color: #ddd;
+		}
 	</style>
 	<script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/jquery-1.11.1.min.js"></script>
 	<script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/bootstrap.min.js"></script>
+	<script src="__PUBLIC_PIPACKER__/pipacker/js/user.js"></script>
 </head>
 <body>
 	{include file="common/navigation"}
 	<div class="container">
-		<div class="head_bg"></div>
+		<div class="head_bg">
+			<button type="button" class="btn btn-default edit_head_bg" data-toggle="modal" data-target="#head_bg_modal">
+				编辑
+			</button>
+		</div>
 	</div>
 	<div class="container head_info">
 		<div class="row">
 			<div class="col-md-5">
 				<div class="head_photo">
 					<img src="__PUBLIC_PIPACKER__/pipacker/images/18.jpg">
+					<button type="button" class="btn btn-default edit_headphoto" data-toggle="modal" data-target="#head_photo_modal">
+						编辑
+					</button>
 				</div>
 				<span class="user_name">摄影师不加鸡腿</span>
 			</div>
@@ -323,5 +374,55 @@
 		{include file="common/show_img_list"}
 	</div>
 	
+<!-- Modal -->
+	<div class="modal fade" id="head_bg_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1 style="color: #ddd;">更换封面照片</h1>
+					<p style="color: #aaa; font-size: 16px;">上传封面照片。它将以1140x250像素显示。</p>
+					<p style="color: #aaa; padding-bottom: 20px;">
+						<span style="font-size: 14px; font-weight: bold;">从您的计算机中选择一个文件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="file" name=""></p>
+					<div style="margin-bottom: 20px;">
+						<button type="button" class="btn btn-primary grey">上传</button>
+						<button type="button" class="btn btn-default grey" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="head_photo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1 style="color: #ddd;">更改个人资料图片</h1>
+					<p style="color: #aaa; font-size: 16px;">上传下面的个人资料图片。它将以170x170像素显示为正方形。</p>
+					<p style="color: #aaa; padding-bottom: 20px;">
+						<span style="font-size: 14px; font-weight: bold;">从您的计算机中选择一个文件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="file" name=""></p>
+					<div style="margin-bottom: 20px;">
+						<button type="button" class="btn btn-primary grey">上传</button>
+						<button type="button" class="btn btn-default grey" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
+<script type="text/javascript">
+	$(function() {
+		$(".head_bg").hover(function() {
+			$(".edit_head_bg").show();
+		},function() {
+			$(".edit_head_bg").hide();
+		});
+		$(".head_photo").hover(function() {
+			$(".edit_headphoto").show();
+		},function() {
+			$(".edit_headphoto").hide();
+		});
+	})
+</script>

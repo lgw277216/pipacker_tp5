@@ -4,7 +4,7 @@
 	/**
 	* 
 	*/
-	class Mainpage extends Controller
+	class Favorites extends Controller
 	{
 		
 		public function index()
