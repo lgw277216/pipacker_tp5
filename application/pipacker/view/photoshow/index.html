@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
     <link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/bootstrap.min.css">
+<<<<<<< HEAD
+	<link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/swiper.min.css">
+=======
 	<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/css/swiper.min.css"> -->
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
   <link rel="stylesheet" href="__PUBLIC_PIPACKER__/pipacker/css/mainpage.css">
 	<style>
         html, body {
@@ -57,7 +61,10 @@
         }
         .browse_photo {
             width: 70%;
+<<<<<<< HEAD
+=======
             max-height: 600px;
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
             float: left;
         }
         /*comment or detail*/
@@ -337,6 +344,8 @@
         .floor .like_btn:focus i {
             color: #000;
         }
+<<<<<<< HEAD
+=======
         .browse_big_img{
           clear: both;
           width:100%;
@@ -365,16 +374,54 @@
           .next_btn{
             right: 0;
           }
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
     </style>
 </head>
 <body>
 	{include file="common/navigation"}
+<<<<<<< HEAD
+    <div class="swiper-container browse_photo">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/1.jpg" class="swiper-lazy">
+                <!-- Preloader image -->
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/2.jpg" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/4.jpg" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/5.jpg" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="__PUBLIC_PIPACKER__/pipacker/images/6.jpg" class="swiper-lazy">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Navigation -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+=======
     <div class="browse_photo">
             <div class="browse_big_img">
                    <img src="__PUBLIC_PIPACKER__/pipacker/images/11.jpg" class="show_content_small_img">
                    <span class="pre_btn hf_btn glyphicon glyphicon-chevron-left"></span>
                    <span class="next_btn hf_btn glyphicon glyphicon-chevron-right"></span>
             </div>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
     </div>
     <div class="comORdet">
       <h3 style="font-family: '宋体';">评论</h3>
@@ -432,7 +479,11 @@
     <div class="detail_com">
       <h3 style="font-family: '宋体';">照片信息</h3>
       <div class="thumbnails">
+<<<<<<< HEAD
+        <img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" alt="">
+=======
         
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
       </div>
       <div class="info">
           <!-- <p><span class="color888;">查看</span><br><span class="colorccc;">10086+</span></p>
@@ -469,7 +520,11 @@
                    <div class="author_content">
                       <div class="author_header">
                         <div class="author_header_inner">
+<<<<<<< HEAD
+                          <a href="{:url('homepage/index')}" class="user_name" style="color: #fff; font-size: 21px;">RUA<img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" class="user_headphoto"></a>
+=======
                           <a href="homepage" class="user_name" style="color: #fff; font-size: 21px;">RUA<img src="__PUBLIC_PIPACKER__/pipacker/images/3.jpg" class="user_headphoto"></a>
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
                           <span class="follow">关注</span>
                         </div>
                       </div>
@@ -524,6 +579,46 @@
 
 <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/jquery-1.11.1.min.js"></script>
 <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
+<script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/swiper.min.js"></script>
+<script type="text/javascript">
+	// var swiper = new Swiper('.swiper-container', {
+ //        nextButton: '.swiper-button-next',
+ //        prevButton: '.swiper-button-prev',
+ //        keyboardControl: true,  //键盘控制
+ //        paginationClickable: true,
+ //        preloadImages: false,
+ //        lazyLoading: true  //加载特效
+ //    });
+    $(function (){
+        $('.right_btn').on('click',function(e){
+            var this_elm = $(e.target);
+            var $show_div = $('.comORdet');
+            var $detail_com = $('.detail_com');
+            // console.log($show_div);
+            if(this_elm.hasClass("comment_btn_i")){
+                if(!$detail_com.is(":hidden")){
+                    $detail_com.fadeOut(500);
+                }
+                if($show_div.is(":hidden")){
+                    // console.log($show_div);
+                    $show_div.fadeIn(500);
+                }else{
+                    // $show_div.hide(500);
+                }                
+            }else if(this_elm.hasClass("detail_btn_i")){
+                if(!$show_div.is(":hidden")){
+                    $show_div.fadeOut(500);
+                }
+                if($detail_com.is(":hidden")){
+                    $detail_com.fadeIn(500);
+                }else{
+                    // $detail_com.hide(500);
+                } 
+            }
+        });
+    });
+=======
 <!-- <script src="__PUBLIC_PIPACKER__/pipacker/libarary/Bootstrap3.3.7/js/swiper.min.js"></script> -->
 <script type="text/javascript">
 
@@ -607,4 +702,5 @@
             });
        }
       });
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 </script>

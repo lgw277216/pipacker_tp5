@@ -55,7 +55,11 @@ $(function (){
 			$user_pwd.on('blur',function() {
 				$user_pwd_text = $user_pwd.val();
 				if($user_pwd != "") {
+<<<<<<< HEAD
+					 if(/^(\w){8,20}$/.test($user_pwd_text)) {
+=======
 					 if(/^(\w){6,20}$/.test($user_pwd_text)) {
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 						$(".lotips").eq(1).removeClass("glyphicon-remove-circle").addClass("glyphicon-ok-circle");
 
 					} else {
@@ -75,6 +79,23 @@ $(function (){
 							"user_phone":$user_phone_text,
 							"user_pwd":$user_pwd_text
 						}
+<<<<<<< HEAD
+						var that = this;
+						$.get(register_url,userData,function(Data) {
+							if (!$.isEmptyObject(Data)) {
+								var redata = $.parseJSON(Data);
+								// console.log(redata);
+								if (0 == redata.status) {
+									localStorage.setItem("user_phone",redata.rearray.user_phone);
+									// localStorage.setItem("user_pwd",redata.user_pwd);
+									localStorage.setItem("user_name",redata.rearray.user_name);
+									localStorage.setItem("user_id",redata.rearray.user_id);
+									$("#pp_login").modal('hide');
+									$(".modal-backdrop").hide();
+									// $(".before_login").html('<span class="glyphicon glyphicon-globe"></span> <span class="glyphicon glyphicon-envelope"></span> <span class="glyphicon glyphicon-user personal_list"></span> <span class="glyphicon glyphicon-off pp_logout_btn"></span>');
+									console.log(localStorage);
+									window.location.reload();
+=======
 						$.get(register_url,userData,function(Data) {
 							if (!$.isEmptyObject(Data)) {
 								var redata = $.parseJSON(Data);
@@ -95,6 +116,7 @@ $(function (){
 									$(".modal-backdrop").hide();
 									// alert('登录成功');
 									console.log(localStorage);
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 								} else if (1 == redata.status) {
 									alert("密码有误");
 								}
@@ -211,13 +233,52 @@ $(function (){
 			});
 		},
 		logout:function(){
+<<<<<<< HEAD
+			$(".pp_logout_btn").on('click',function() {
+				var user_id = localStorage.getItem("user_id");
+				$.get(register_url,{'user_id':user_id},function(Data) {
+					if (!$.isEmptyObject(Data)) {
+						var redata = $.parseJSON(Data);
+						console.log(redata);
+						if(3==redata.status){
+							localStorage.removeItem("user_id");
+		 					localStorage.removeItem("user_phone");
+		 					localStorage.removeItem("user_name");
+		 					window.location.reload();
+		 				} else {
+		 					console.log('退出失败');
+		 				}
+					}
+				})
+			})
+		},
+		show_person_list:function() {
+			$(".personal_list").hover(function() {
+				$(".per_list_show").stop().fadeIn(200);
+				$(".per_list_show").on('mouseover',function() {
+					$(".per_list_show").stop().show();
+				});
+			},function() {
+				$(".per_list_show").stop().fadeOut(200);
+				$(".per_list_show").on('mouseout',function() {
+					$(".per_list_show").stop().fadeOut(200);
+				});
+			})
+=======
 
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 		},
 		init:function(){
 			this.register();
 			this.login();
+<<<<<<< HEAD
+			this.logout();
+			this.show_person_list();
+		}
+=======
 		}
 
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	}
 	var user_option = new user_option();
 	user_option.init();

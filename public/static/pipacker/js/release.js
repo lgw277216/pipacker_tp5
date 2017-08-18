@@ -1,14 +1,24 @@
+<<<<<<< HEAD
+function submit_weibo(){
+=======
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	// console.log($("#pic_file").get(0).files[0]);
 	// console.log($(".img_type").val());
 	// console.log($(".camera_type").val());
 	// console.log($(".aperture_type").val());
 	// console.log($(".iso_type").val());
 	// console.log($(".shutter_type").val());
+<<<<<<< HEAD
+=======
 
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
 	// console.log($(".works_title").find('input').val())
 	// console.log($(".works_profile").find('textarea').val())
 	// console.log($(".atlas_id").find('input').val())
 	// console.log($(".works_tags").find('input').val())
+<<<<<<< HEAD
+}
+=======
 $(function(){
 	// console.log($(".send_works"));
 	function works_option(){
@@ -64,3 +74,4 @@ $(function(){
 	var works_option = new works_option();
 	works_option.init();
 });
+>>>>>>> af7eee8539a42221834c827c1875843b0f3b7b4d
