@@ -32,10 +32,14 @@
 			 // curl_setopt($con, CURLOPT_RETURNTRANSFER,true);
 			 // curl_setopt($con, CURLOPT_TIMEOUT,(int)"3000");
 			 $val =  json_decode(curl_exec($con),true);
+			 // var_dump('http://'.$_SERVER['HTTP_HOST'].url('/qworks/Hot'));
 
 			 curl_close($con);
-			 // var_dump($val['rearray']);	
-			 // echo 'http://'.$_SERVER['HTTP_HOST'].url('/qworks/Apic',array('works_id'=>10));
+			 foreach($val["rearray"] as $key=>$pic){
+			 	$tags = explode(',',$pic['works_tags']);
+		    	$val["rearray"][$key]["works_tags"] = $tags;
+		    	// print_r($tags);
+			 }
 			 
 			 $this->assign("works_list",$val["rearray"]);
 	    	 return $this->fetch();

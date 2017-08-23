@@ -22,22 +22,35 @@ class Works extends baseControll
             if(isset($param["page"])){
                 $pp_list = Db::table("pp_works")
                                 ->join("pp_user","pp_user.user_id = pp_works.user_id")
+                                ->order("pp_works.works_id desc")
                                 ->limit(15)
                                 ->page($param["page"])
                                 ->select();
 
                 // print_r(5*$param["page"]);
 
-            }else{     
-                $pp_list = Db::table("pp_works")
+            }else{
+                if(isset($param["user_id"])){
+                    $user_id = $param["user_id"];
+                    $pp_list = Db::table("pp_works")
+                                ->join("pp_user","pp_user.user_id = pp_works.user_id")
+                                ->where("pp_works.user_id=$user_id")
+                                ->order("pp_works.works_id desc")
+                                ->limit(15)
+                                ->select();
+                }else{                      
+                    $pp_list = Db::table("pp_works")
                                 ->join("pp_user","pp_user.user_id = pp_works.user_id")
                                 ->where($param)
+                                ->order("pp_works.works_id desc")
                                 ->limit(15)
-                                ->select(); 
+                                ->select();
+                } 
             }
         }else{            
             $pp_list = Db::table("pp_works")
                             ->join("pp_user","pp_user.user_id = pp_works.user_id")
+                            ->order("pp_works.works_id desc")
                             ->limit(15)
                             ->select();
         }
@@ -145,6 +158,7 @@ class Works extends baseControll
             $this->reJson("2",array(),"服务器并没有接收到数据，数据应该是丢失了...");   
         }
     }
+    // public function get
     /**
      * 
      *
@@ -180,6 +194,26 @@ class Works extends baseControll
             } 
         }
     }
+    public function getSearch(){
+        $param = Request::instance()->param();
+        if(!empty($param)){
+            if(isset($param["page"])){
+                $page = $param["page"];
+            }else{       
+                $page = 1;
+            }
+             $pp_list = Db::table("pp_works")
+                           ->join("pp_user","pp_user.user_id = pp_works.user_id")
+                           ->where('works_title|works_profile|works_para|works_type|user_name','like','%'.$param["key_word"].'%')
+                           ->limit(15)
+                           ->page($page)
+                           ->select();
+
+            $this->reJson("0",$pp_list);
+        }else{
+             $this->reJson("1");
+        }
+    }
     public function getApic()
      {
         //
@@ -193,31 +227,44 @@ class Works extends baseControll
                 unset($param["browse"]);
                 //上一张和下一张
                 if(1==$ew){
-                    $pic = Db::table("pp_works")->order('works_id desc')->where("works_id<$id")->limit(1)->find();
+                    $pic = Db::table("pp_works")->order('works_id desc')->where("works_id<$id")->join("pp_user","pp_user.user_id = pp_works.user_id")->limit(1)->find();
+                    $allpic = Db::table("pp_works")->order('works_id asc')->where("works_id<$id")->join("pp_user","pp_user.user_id = pp_works.user_id")->limit(10)->select();
+                    $count = Db::table("pp_works")->count("works_id");
                     // print_r($pic);
                 }else if(0==$ew){
-                    $pic = Db::table("pp_works")->order('works_id asc')->where("works_id>$id")->limit(1)->find();
+                    $pic = Db::table("pp_works")->order('works_id asc')->where("works_id>$id")->join("pp_user","pp_user.user_id = pp_works.user_id")->limit(1)->find();
+                    $allpic = Db::table("pp_works")->order('works_id asc')->where("works_id>$id")->join("pp_user","pp_user.user_id = pp_works.user_id")->limit(10)->select();
+                     $count = Db::table("pp_works")->count("works_id");
                 }
                 if(!empty($pic)){   
                     $tags = explode(',',$pic['works_tags']);
                     $pic['works_tags'] = $tags;
                     $para = explode(',',$pic['works_para']);
                     $pic['works_para'] = $para;
-                    $this->reJson("0",$pic);
+                    $redata["pic"] = $pic;
+                    $redata["allpic"] = $allpic;
+                    $redata["count"] = $count;
+                    $this->reJson("0",$redata);
                 }else{
                     $this->reJson("1");
                 }
-            }else{  
+            }else{
+                $id = $param["works_id"];
                 $pp_list = Db::table("pp_works")
                                 ->where($param)
                                 ->join("pp_user","pp_user.user_id = pp_works.user_id")
                                 ->find();
+                $allpic =  Db::table("pp_works")->order('works_id asc')->where("works_id>=$id")->join("pp_user","pp_user.user_id = pp_works.user_id")->limit(10)->select();
                 if(!empty($pp_list)){
                     $tags = explode(',',$pp_list['works_tags']);
                     $para = explode(',',$pp_list['works_para']);
+                    $count = Db::table("pp_works")->count("works_id");
                     $pp_list['works_tags'] =$tags;
                     $pp_list['works_para'] =$para;
-                    $this->reJson("0",$pp_list);
+                    $redata["pic"] = $pp_list;
+                    $redata["allpic"] = $allpic;
+                    $redata["count"] = $count;
+                    $this->reJson("0",$redata);
                 }else{
                     $this->reJson("1",$pp_list,'没有数据');
                 }  

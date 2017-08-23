@@ -322,6 +322,26 @@
 	  	</ul>
 		{include file="common/show_img_list"}
 	</div>
-	
+	<script>
+		var user_id = localStorage.getItem("user_id");
+		$.get("{:url('/works')}",{user_id:user_id}).done(function(data){
+			if(!$.isEmptyObject(data)){
+				redata = $.parseJSON(data);
+				console.log(redata);
+				var str = '';
+				for(var i=0;i<redata.rearray.length;i++){
+					str+='<li class="show_content_img"><a href="javascript:;">'+
+						 '<img src="'+redata.rearray[i].works_src+'" class="m_img" data-id="'+redata.rearray[i].works_id+'">'+
+						 '<p> '+redata.rearray[i].user_name+'</p></a></li>';		
+				}
+				$show_img_list.find(".show_img_ul").eq(1).html($(str));
+				// url = "{:url('/works')}";
+				// more_lock = true;
+				
+				// $(".more").text("发现更多");
+			}
+		})
+
+	</script>
 </body>
 </html>

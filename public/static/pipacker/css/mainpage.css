@@ -48,7 +48,9 @@ ul{
 .imgwidth{
 	width: 100%;
 }
-
+.color_red{
+	background: red;
+}
 
 /*导航条样式*/
 .pp_header{
