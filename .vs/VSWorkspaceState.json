@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\application",
+    "\\application\\api",
+    "\\application\\api\\controller",
+    "\\application\\pipacker",
+    "\\application\\pipacker\\controller",
+    "\\public",
+    "\\public\\static",
+    "\\public\\static\\pipacker",
+    "\\public\\static\\pipacker\\css",
+    "\\public\\static\\pipacker\\js"
+  ],
+  "SelectedNode": "\\application\\api\\controller\\Collect.php",
+  "PreviewInSolutionExplorer": false
+}

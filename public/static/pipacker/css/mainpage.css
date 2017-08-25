@@ -48,8 +48,8 @@ ul{
 .imgwidth{
 	width: 100%;
 }
-.color_red{
-	background: red;
+.text_red {
+    color:orangered;
 }
 
 /*导航条样式*/
@@ -86,8 +86,14 @@ ul{
     width: 80%;
     box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
 }
+div.search_btn {
+    height:100%;
+    line-height:100%;
+    display:inline-block;
+    text-align:center;
+}
 .support {
-	position: relative;
+    position: relative;
 }
 .support span{
 	margin:0 2px;
