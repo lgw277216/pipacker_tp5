@@ -4,14 +4,14 @@
 
         var defaults = {
             Size: 100,
-            borderSize: 4,
-            borderColor: "#888"
+            borderSize: 1,
+            borderColor: "black"
         };
         var options = $.extend(defaults, options);
         var lensType = "background-position: 0px 0px;width: " + String(options.Size) + "px;height: " + String(options.Size)
             + "px;float: left;display: none;border-radius: " + String(options.Size / 2 + options.borderSize)
             + "px;border: " + String(options.borderSize) + "px solid " + options.borderColor
-            + ";background-repeat: no-repeat;position: absolute;z-index:1399";
+            + ";background-repeat: no-repeat;position: absolute;";
 
         return this.each(function () {
             obj = $(this);
@@ -26,7 +26,7 @@
 
             // Calculating actual size of image
             var imageSrc = options.imageSrc ? options.imageSrc : $(this).attr("src");
-            var imageTag = "<img style='display:none;' src='" + imageSrc + "' />";
+            var imageTag = "<img style='display:none;' src='" + imageSrc + "' class='pos_img'/>";
 
             var widthRatio = 0;
             var heightRatio = 0;
@@ -35,11 +35,13 @@
                 heightRatio = $(this).height() / obj.height();
             }).appendTo($(this).parent());
             target.hide();
-            target.css({ backgroundImage: "url('" + imageSrc + "')" });
-            setTimeout(function () {
-            	target.mousemove(setImage);
-            	$(this).mousemove(setImage);
-            },500);
+            target.css({ backgroundImage: "url('" + imageSrc + "') " });
+        	target.mousemove(setImage);
+        	$(this).mousemove(setImage);
+        	target.mouseleave(function(event) {
+        		/* Act on the event */
+        		target.hide();
+        	});
             function setImage(e) {
 
                 var leftPos = parseInt(e.pageX - offset.left);

@@ -372,11 +372,13 @@
           height:400px;
         }
         .browse_big_img div.img_middle img {
-          max-width: 100%;
-          max-height: 80%;
           position: relative;
           cursor:pointer;
-        }   
+        }
+        .show_content_small_img{
+          max-width:100%;
+          max-height:80%;
+        }
         .hf_btn{
         position: absolute;        
         top:-50%;
@@ -449,7 +451,6 @@
           right:0;
         ;
         }
-
         .zoom img {
           display: block; 
         }
@@ -558,26 +559,8 @@
             </div>
             <p class="like_btn"><i class="glyphicon glyphicon-heart"></i></p>
             <div class="dropdown like_list">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-list"></i></a>
-                <div class="dropdown-menu">
-                   <div class="author_content">
-                       <div class="mylike_header">
-                         <div class="mylike_header_inner">
-                            <span class="mylike_header_title" style="color: #fff; font-size: 21px;">组</span>
-                            <span class="mylike_header_create_list">创建组</span>
-                         </div>
-                       </div>
-                       <div class="mylike_photo">
-                         <ul class="mylike_photo_list">
-                           <li>
-                             <img class="mylike_photo_list_img" src="__PUBLIC_PIPACKER__/pipacker/images/9.jpg">
-                             <a href="" class="mylike_photo_list_name">我的最爱</a>
-                             <span class="mylike_photo_list_btn" style="margin-top: 2px;">添加图片</span>
-                           </li>
-                         </ul>
-                       </div>
-                   </div>
-                </div>
+                <a href="#"><i class="glyphicon glyphicon-zoom-in"></i></a>
+                <a href="#"><i class="glyphicon glyphicon-zoom-out"></i></a>
             </div>
             <div class="pull-right right_btn">
                 <p class="comment_btn"><i class="pull-right glyphicon glyphicon-comment comment_btn_i"></i></p>
@@ -630,10 +613,23 @@ var $comment_btn_i = $(".comment_btn_i");
     var $comment_container = $(".comment_container");
     var $browsenum = $('.browsenum');
     var gnum = 0;
-
+var posnum = 200;
+var $like_btn = $(".like_list");
+$like_btn.on("click",function(e){
+  var this_elm = $(e.target);
+  if(this_elm.hasClass('glyphicon-zoom-in')){
+      if(posnum<400){
+        posnum=posnum+100;
+      }
+  }else if(this_elm.hasClass('glyphicon-zoom-out')){
+      if(posnum>100){
+        posnum=posnum-100;
+      }
+  }
+});
 $browse_img.children(".img_middle").find("img").mouseenter(function () {
     // $(this).stop().animate({ "max-width": "180%", "max-height": "140%", marginTop: "-5%", marginLeft: "0%","z-index":1036 });
-    $(this).zoombieLens({Size:250,imageSrc: $(this).attr("src")});
+    $(this).zoombieLens({Size:posnum,imageSrc: $(this).attr("src")});
 }).mouseleave(function () {
     $(this).stop().animate({ "max-width": "100%", "max-height": "80%", marginTop:0, marginLeft: 0,"z-index":0 })
 });
