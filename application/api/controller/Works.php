@@ -226,6 +226,7 @@ class Works extends baseControll
         //
         $param = Request::instance()->param();
         // var_dump(Request::instance());
+		 session_start();
         if(!empty($_SESSION["user_info"])){
             $user_id = $_SESSION["user_info"]["user_id"];
         }else{
@@ -306,8 +307,9 @@ class Works extends baseControll
                         if(null==$user_id){
                             $allpic[$key]["collect_val"] = 0;
                         }else{
-                            $collect_val = Db::table("pp_collect")->where(array("works_id"=>$val["works_id"],"user_id"=>$val["user_id"]))->find();
+                            $collect_val = Db::table("pp_collect")->where(array("works_id"=>$val["works_id"],"user_id"=>$user_id))->find();
                             if(!empty($collect_val)){
+								
                                  $allpic[$key]["collect_val"] = 1;
                             }else{
                                  $allpic[$key]["collect_val"] = 0;

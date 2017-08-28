@@ -108,5 +108,32 @@ class Collect extends baseControll
     public function delete($id)
     {
         //
+		$param = Request::instance()->param();
+		if(!empty($param)){
+		unset($param["id"]);
+		if(Db::table("pp_collect")->where($param)->delete()){
+			$this->reJson("0",array(),"取消收藏了");
+		}else{
+			$this->reJson("2",array(),"服务器删除失败了");
+		}
+		}else{
+		$this->rejson("1",array(),"数据丢失了...");
+		}
     }
+	public function getAuthor_collect(){
+		$param = Request::instance()->param();
+		unset($param["action"]);
+		$id = $param['user_id'];
+		if(!empty($param)){
+			$collect_list = Db::table("pp_collect")
+                            ->where("pp_collect.user_id = $id")
+                            ->join("pp_works","pp_works.works_id = pp_collect.works_id")
+							->field("pp_works.works_src,pp_collect.user_id,pp_collect.works_id")
+							->union("SELECT user_photo,user_name FROM pp_user where pp_user.user_id = $id",true)
+                            //->limit(10)
+                            ->select();
+			var_dump($collect_list);
+            $this->reJson("0",$collect_list); 
+		}
+	}
 }

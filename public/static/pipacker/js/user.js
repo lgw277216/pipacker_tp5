@@ -1,6 +1,6 @@
 $(function (){
 	function user_option(){
-		this.user_id=logcalStorage.getItem("user_id");
+		//this.user_id=logcalStorage.getItem("user_id");
 		// this.data={}
 	};
 	user_option.prototype={
