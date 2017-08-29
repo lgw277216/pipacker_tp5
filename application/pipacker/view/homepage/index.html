@@ -435,7 +435,7 @@
 	</div>
 	<div class="container" style="text-align: center; margin-top: -115px;">
 		<ul class="nav nav-tabs" role="tablist">
-		    <li role="presentation" class="active"><a style="border-left: 2px solid #222222;" href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">发布</a></li>
+		    <li role="presentation" class="active"><a style="border-left: 2px solid #222222;" href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">发布(233)</a></li>
 		    <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">粉丝</a></li>
 		    <li role="presentation"><a href="#tab4" class="comment_btn_i" aria-controls="tab4" role="tab" data-toggle="tab">留言</a></li>
 	  	</ul>
@@ -516,7 +516,7 @@
 		$.get("{:url('/api/home/index')}",{user_id:user_id}).done(function(data){
 			if (!$.isEmptyObject(data)) {
 				redata = $.parseJSON(data);
-				// console.log(localStorage)
+				// console.log(redata)
 				if (0 == redata.status) {
 					var head_bg=redata.rearray[0].user_bg;
 	        		head_bg=head_bg.replace("\\",'/');
@@ -637,7 +637,7 @@
 	        "works_id":localStorage.getItem("apic_id")
 	      };
 	      //评论的回调函数
-	      $.post("{:url('/comment')}",comdata,function(data){
+	      $.post("{:url('/api/home/save_message')}",comdata,function(data){
 	          if (!$.isEmptyObject(data)) {
 	              redata = $.parseJSON(data);
 	              var head_photo = localStorage.getItem("head_photo");
@@ -648,11 +648,12 @@
 	                  '</div>' +
 	                  '<div class="media-body">' +
 	                  '<h4 class="media-heading">' + localStorage.getItem("user_name") + '<span style="font-size: 12px; color: #555; vertical-align: text-top; display: inline-block;float:right;">' + getLocalTime(redata.rearray.update_time) + '</span></h4>' +
-	                  '<p>' + comdata.comment + '<span style="font-size: 12px; color: #555; vertical-align: text-top; display: inline-block;position: relative;float:right;">删除</span></p>' +
+	                  '<p>' + comdata.comment + '<span class="del_comment" style="font-size: 12px; color: #555; vertical-align: text-top; display: inline-block;position: relative;float:right;" data-id="'+redata.rearray[i].comment_id+'">删除</span></p>' +
 	                  '</div>' +
 	                  '</div>' +
 	                  '</div> ';
 	              $comment_container.prepend(str);
+	              $comment_text.val("");
 	          }
 	      });
 	  	});
@@ -664,16 +665,17 @@
 	    $comment_btn_i.on("click", comment_query);
 	    function comment_query() {
 	        var str = '';
-	        $.get("{:url('/comment')}", { "works_id": localStorage.getItem("apic_id") }, function (data) {
+	        $.get("{:url('/api/home/message')}", { "works_id": localStorage.getItem("apic_id") }, function (data) {
 	            if (!$.isEmptyObject(data)) {
 	                redata = $.parseJSON(data);
 	              	var head_photo = localStorage.getItem("head_photo");
 	                if (0 == redata.status) {
 	                    for (var i = 0; i < redata.rearray.length; i++) {
+	                    	// console.log(redata.rearray[i].comment_id);
 	                        str += '<div class="comment_connent">' +
 	                            '<div class="media">' +
 	                            '<div class="media-left">' +
-	                            '<img class="media-object" src="'+head_photo+'" alt="">' +
+	                            '<img class="media-object" src="'+redata.rearray[i].user_photo+'" alt="">' +
 	                            '</div>' +
 	                            '<div class="media-body">' +
 	                            '<h4 class="media-heading">' + redata.rearray[i].user_name +
@@ -681,7 +683,7 @@
 	                            getLocalTime(redata.rearray[i].update_time) + '</span></h4>' +
 	                            '<p>' + redata.rearray[i].comment;
 	                            if (0 == redata.rearray[i].del_val){
-	                                str += '<span style="font-size: 12px; color: #555; vertical-align: text-top; display: inline-block;float:right;">删除</span></p>';
+	                                str += '<span class="del_comment" style="font-size: 12px; color: #555; vertical-align: text-top; display: inline-block;float:right;" data-id="'+redata.rearray[i].comment_id+'">删除</span></p>';
 	                            }
 	                            str += '</div>' +
 	                            '</div>' +
@@ -692,5 +694,24 @@
 	            }
 	        });
 	    }
+	    // 删除评论
+	    $comment_container.on("click",function(el){
+	      var this_elm = $(el.target);
+	      if(this_elm.hasClass("del_comment")){
+	        var comment_id = this_elm.attr("data-id");
+	         $.ajax({
+	                    url: "{:url('/api/home/delete')}",
+	                    type: 'delete',
+	                    data: {"comment_id":comment_id},
+	                }).done(function (data) {
+	                    if (!$.isEmptyObject(data)) {
+	                        var redata = $.parseJSON(data);
+	                        if (0 == redata.status) {
+	                            this_elm.parents(".comment_connent").hide(500);
+	                        }
+	                    }
+	          });
+	      }
+	    });
 	})
 </script>
